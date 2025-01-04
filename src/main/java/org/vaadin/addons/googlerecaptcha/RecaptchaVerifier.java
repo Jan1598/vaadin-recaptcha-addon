@@ -21,7 +21,6 @@ public class RecaptchaVerifier
     {
         try ( HttpClient client = HttpClient.newHttpClient() )
         {
-
             String formData = "secret=" + secretKey + "&response=" + recaptchaResponse;
 
             HttpRequest request = HttpRequest.newBuilder()

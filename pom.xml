@@ -6,7 +6,7 @@
 
     <groupId>org.vaadin.addons.googlerecaptcha</groupId>
     <artifactId>googlerecaptcha</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>Google ReCaptcha add on for Vaadin</name>
     <description>This is a Google ReCaptcha for Vaadin</description>
 

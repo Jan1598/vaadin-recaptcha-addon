@@ -27,7 +27,7 @@ public class RecaptchaComponent extends Component
         setId( "recaptcha-container" );
         getElement().setAttribute( "class", "g-recaptcha" );
         getElement().setAttribute( "data-sitekey", dataSiteKey );
-        getElement().setAttribute( "data-callback", "myCallback" );
+        getElement().setAttribute( "data-callback", "tokenCallback" );
         getElement().setAttribute( "data-theme", theme );
 
         loadRecaptcha();
@@ -45,15 +45,15 @@ public class RecaptchaComponent extends Component
                         if (typeof grecaptcha !== "undefined") {
                             grecaptcha.render($0, {
                                 'sitekey': $1,
-                                'callback': myCallback
+                                'callback': tokenCallback
                             });
                         }
                     };
                 
-                    function myCallback(token) {
+                    function tokenCallback(token) {
                         $0.$server.callback(token);
                     }
-                    window.myCallback = myCallback;
+                    window.tokenCallback = tokenCallback;
                 """, this, dataSiteKey );
 
         reloadRecaptcha();
@@ -66,7 +66,7 @@ public class RecaptchaComponent extends Component
                         document.getElementById("recaptcha-container").innerHTML = "";
                         grecaptcha.render($0, {
                             'sitekey': $1,
-                            'callback': myCallback
+                            'callback': tokenCallback
                         });
                     }
                 """, this, getElement().getAttribute( "data-sitekey" ) );
