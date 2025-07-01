@@ -2,6 +2,7 @@ package org.vaadin.addons.googlerecaptcha;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.java.Log;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,11 +11,10 @@ import java.net.http.HttpResponse;
 import java.util.Collections;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
+@Log
 public class RecaptchaVerifier
 {
-    private static final Logger LOGGER = Logger.getLogger( RecaptchaVerifier.class.getName() );
     private static final String VERIFICATION_URL = "https://www.google.com/recaptcha/api/siteverify";
 
     public boolean verifyRecaptcha( String recaptchaResponse, String secretKey )

@@ -6,12 +6,12 @@
 
     <groupId>org.vaadin.addons.googlerecaptcha</groupId>
     <artifactId>googlerecaptcha</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>Google ReCaptcha add-on for Vaadin Framework</name>
     <description>This is a Google ReCaptcha for Vaadin</description>
 
     <properties>
-        <vaadin.version>24.6.0</vaadin.version>
+        <vaadin.version>24.8.2</vaadin.version>
 
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -100,7 +100,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.36</version>
+            <version>1.18.38</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
