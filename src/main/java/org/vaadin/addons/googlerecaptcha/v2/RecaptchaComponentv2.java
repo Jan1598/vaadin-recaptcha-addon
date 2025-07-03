@@ -1,4 +1,4 @@
-package org.vaadin.addons.googlerecaptcha;
+package org.vaadin.addons.googlerecaptcha.v2;
 
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
@@ -6,12 +6,15 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JavaScript;
 import lombok.Getter;
+import org.vaadin.addons.googlerecaptcha.RecaptchaVerifier;
+
+import java.util.Map;
 
 
-@Tag( "recaptcha-component" )
+@Tag( "recaptcha-component-v2" )
 @Getter
 @JavaScript( "https://www.google.com/recaptcha/api.js" )
-public class RecaptchaComponent extends Component
+public class RecaptchaComponentv2 extends Component
 {
     private final RecaptchaVerifier recaptchaVerifier = new RecaptchaVerifier();
     private final String dataSiteKey;
@@ -19,12 +22,12 @@ public class RecaptchaComponent extends Component
 
     private boolean valid;
 
-    public RecaptchaComponent( String dataSiteKey, String secretKey, String theme )
+    public RecaptchaComponentv2( String dataSiteKey, String secretKey, String theme )
     {
         this.dataSiteKey = dataSiteKey;
         this.secretKey = secretKey;
 
-        setId( "recaptcha-container" );
+        setId( "recaptcha-container-v2" );
         getElement().setAttribute( "class", "g-recaptcha" );
         getElement().setAttribute( "data-sitekey", dataSiteKey );
         getElement().setAttribute( "data-callback", "tokenCallback" );
@@ -33,7 +36,7 @@ public class RecaptchaComponent extends Component
         loadRecaptcha();
     }
 
-    public RecaptchaComponent( String dataSiteKey, String secretKey )
+    public RecaptchaComponentv2( String dataSiteKey, String secretKey )
     {
         this( dataSiteKey, secretKey, "light" );
     }
@@ -63,7 +66,7 @@ public class RecaptchaComponent extends Component
     {
         getElement().executeJs( """
                     if (typeof grecaptcha !== "undefined") {
-                        document.getElementById("recaptcha-container").innerHTML = "";
+                        document.getElementById("recaptcha-container-v2").innerHTML = "";
                         grecaptcha.render($0, {
                             'sitekey': $1,
                             'callback': tokenCallback
@@ -85,7 +88,8 @@ public class RecaptchaComponent extends Component
     @ClientCallable
     public void callback( String response )
     {
-        valid = recaptchaVerifier.verifyRecaptcha( response, secretKey );
+        Map<String, Object> stringObjectMap = recaptchaVerifier.verifyRecaptcha( response, secretKey );
+        valid = stringObjectMap != null && Boolean.TRUE.equals( stringObjectMap.get( "success" ) );
     }
 
 }
