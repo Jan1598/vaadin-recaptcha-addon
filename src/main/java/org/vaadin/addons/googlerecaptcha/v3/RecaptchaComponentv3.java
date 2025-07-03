@@ -36,10 +36,10 @@ public class RecaptchaComponentv3 extends Component
         getElement().executeJs( """
                     if (typeof grecaptcha !== "undefined") {
                         grecaptcha.ready(function() {
-                                     grecaptcha.execute($1, {action: 'submit'}).then(function(token) {
-                                         $0.$server.handleRecaptchaResponse(token);
-                                     });
-                                   });
+                             grecaptcha.execute($1, {action: 'submit'}).then(function(token) {
+                                 $0.$server.handleRecaptchaResponse(token);
+                             });
+                        });
                     }
                 """, this, dataSiteKey );
     }
@@ -53,5 +53,4 @@ public class RecaptchaComponentv3 extends Component
             callback.onResult( stringObjectMap );
         }
     }
-
 }
